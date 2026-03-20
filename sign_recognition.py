@@ -22,6 +22,10 @@ while True:
 
     mask = mask1 + mask2
 
+    blur = cv2.GaussianBlur(mask, (5,5), 0)
+
+    dilate = cv2.dilate(blur, None, iterations=2)
+
     #contours
     contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 

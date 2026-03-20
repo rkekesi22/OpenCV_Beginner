@@ -65,9 +65,12 @@ while True:
 
         cv2.putText(frame1, "Movement!", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-        if is_movement:
+        last_save = 0
+
+        if is_movement and time.time() - last_save > 2:
             filename = f"movement_{int(time.time())}.jpg"
             cv2.imwrite(filename, frame1)
+            last_save = time.time()
 
     cv2.imshow("Kamera", frame1)
 

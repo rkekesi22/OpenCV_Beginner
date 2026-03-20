@@ -1,6 +1,6 @@
 # OpenCV_Beginner
 
-1. Mozgásérzekelő
+1. Mozgásérzékelő
 
    kamera -> 2 frame
 ->   diff (különbség)

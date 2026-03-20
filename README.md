@@ -11,3 +11,4 @@
 ->   contours(objektum)
 ->   rectangle(rajzolás)
 
+2. Piros tábla felismerés

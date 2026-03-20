@@ -1,6 +1,7 @@
 from subprocess import check_output
 
 import cv2
+import time
 
 cap = cv2.VideoCapture(0)
 
@@ -47,10 +48,15 @@ while True:
 
     contours, _ = cv2.findContours(dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
+    is_movement = False
+
     for contour in contours:
         #zaj kiszűrés
         if cv2.contourArea(contour) < 2000:
             continue
+
+        #Movement --> Save
+        is_movement = True
 
         #Téglalap számítás
         x,y,w,h = cv2.boundingRect(contour)
@@ -58,6 +64,10 @@ while True:
         cv2.rectangle(frame1, (x,y), (x+w, y+h), (0,255,0), 2)
 
         cv2.putText(frame1, "Movement!", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+        if is_movement:
+            filename = f"movement_{int(time.time())}.jpg"
+            cv2.imwrite(filename, frame1)
 
     cv2.imshow("Kamera", frame1)
 
